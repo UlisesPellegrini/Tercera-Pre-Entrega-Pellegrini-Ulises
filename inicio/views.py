@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 
 from inicio.models import Paleta, Usuario, Auto
 
-from inicio.forms import CrearPaletaFormulario
-from inicio.forms import CrearUsuarioFormulario
-from inicio.forms import CrearAutoFormulario
+from inicio.forms import CrearPaletaFormulario, CrearUsuarioFormulario, CrearAutoFormulario
+
+from inicio.forms import BusquedaPaletaFormulario, BusquedaUsuarioFormulario, BusquedaAutoFormulario
 
 # Create your views here.
 
@@ -21,15 +21,30 @@ def inicio(request):
 
 def paleta(request):
     
-    return render(request, 'inicio/paletas.html')
+    formulario = BusquedaPaletaFormulario(request.GET)
+    if formulario.is_valid():
+        marca_a_buscar = formulario.cleaned_data.get('marca')
+        listado_de_paletas = Paleta.objects.filter(marca__icontains = marca_a_buscar)
+
+    return render(request, 'inicio/paletas.html', {'listado_de_paletas': listado_de_paletas})
 
 def automovil(request):
     
-    return render(request, 'inicio/automovil.html')
+    formulario = BusquedaAutoFormulario(request.GET)
+    if formulario.is_valid():
+        marca_a_buscar = formulario.cleaned_data.get('marca')
+        listado_de_autos = Auto.objects.filter(marca__icontains = marca_a_buscar)
+
+    return render(request, 'inicio/automovil.html', {'listado_de_autos': listado_de_autos})
     
 def usuarios(request):
     
-    return render(request, 'inicio/usuarios.html')
+    formulario = BusquedaUsuarioFormulario(request.GET)
+    if formulario.is_valid():
+        nombre_a_buscar = formulario.cleaned_data.get('nombre')
+        listado_de_usuarios = Usuario.objects.filter(nombre__icontains = nombre_a_buscar)
+
+    return render(request, 'inicio/usuarios.html', {'listado_de_usuarios': listado_de_usuarios})
 
 def crear_paleta(request):
     

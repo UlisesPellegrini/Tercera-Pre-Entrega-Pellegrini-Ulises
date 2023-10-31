@@ -7,3 +7,22 @@
 {% block h1_header %}
 Se creo el registro! {{paleta.marca}}
 {% endblock h1_header %}
+
+{% block main %}
+
+<form action="">
+    <input type="text" name="marca" placeholder="Ford, Fiat, ...">
+    <input type="submit" value="Buscar">
+</form>
+
+{% if listado_de_autos %}
+<ul>
+    {% for marca in listado_de_autos %}
+    <li>{{marca}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron autos.</p>
+{% endif %}
+
+{% endblock main %}

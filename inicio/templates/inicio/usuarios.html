@@ -7,3 +7,22 @@
 {% block h1_header %}
 Se creo el usuario! {{paleta.marca}}
 {% endblock h1_header %}
+
+{% block main %}
+
+<form action="">
+    <input type="text" name="nombre" placeholder="Ulises, Pepe, ...">
+    <input type="submit" value="Buscar">
+</form>
+
+{% if listado_de_usuarios %}
+<ul>
+    {% for nombre in listado_de_usuarios %}
+    <li>{{nombre}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron usuarios.</p>
+{% endif %}
+
+{% endblock main %}

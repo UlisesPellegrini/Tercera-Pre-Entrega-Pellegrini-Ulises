@@ -8,5 +8,22 @@
 Se creo la paleta! {{paleta.marca}}
 {% endblock h1_header %}
 
+{% block main %}
 
+<form action="">
+    <input type="text" name="marca" placeholder="Wilson, Head, ...">
+    <input type="submit" value="Buscar">
+</form>
+
+{% if listado_de_paletas %}
+<ul>
+    {% for modelo in listado_de_paletas %}
+    <li>{{modelo}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron paletas.</p>
+{% endif %}
+
+{% endblock main %}
 
