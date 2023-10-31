@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+<title>Crear paleta</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Crear paleta {{paleta.marca}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<!--
+<form action="" method="POST">
+
+    {% csrf_token %}
+
+    <p>
+        Marca:
+        <input type="text" name="marca">
+    </p>
+
+    <p>
+        Descripcion:
+        <input type="text" name="descripcion">
+    </p>
+
+    <p>
+        Anio:
+        <input type="number" name="anio">
+    </p>
+    
+
+    <input type="submit" value='Crear'>
+
+</form> 
+-->
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+
+    {{formulario}}
+
+    <input type="submit" value="Clear">
+
+</form>
+
+{% endblock main %}
+
+
+
+
+
